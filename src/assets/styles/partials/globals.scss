@@ -1,0 +1,20 @@
+html, body, #app, {
+  background: lighten($purple, 35%);
+  font-family: 'Ubuntu', sans-serif;
+  height: 100%;
+  font-size: 14px;
+  color: rgba($green, .9);
+  color: $black;
+  *::selection {
+    background-color: darken($purple, 20%);
+  }
+  *::-moz-selection {
+    background-color: darken($purple, 20%);
+  }
+}
+@for $i from 1 through 5 {
+  .hr#{$i} {
+    border: 0;
+    border-top: #{$i}px solid;
+  }
+}

@@ -1,0 +1,19 @@
+/***** Padding *****/
+@each $padClass, $direction1, $direction2 in (p), (pt, -top), (pr, -right), (pb, -bottom), (pl, -left), (py, -top, -bottom), (px, -left, -right){
+  @for $i from 0 through 5 {
+    .#{$padClass}#{$i} {
+      padding#{$direction1}: 1rem * $i;
+      @if ($direction2) { padding#{$direction2}: 1rem * $i };
+    }
+  }
+}
+
+/***** Margin *****/
+@each $marginClass, $direction1, $direction2 in (m), (mt, -top), (mr, -right), (mb, -bottom), (ml, -left), (my, -top, -bottom), (mx, -left, -right){
+  @for $i from 0 through 5 {
+    .#{$marginClass}#{$i} {
+      margin#{$direction1}: 1rem * $i;
+      @if ($direction2) { margin#{$direction2}: 1rem * $i };
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@mixin nav-list($color) {
+  padding: .7rem 2rem;
+  transition: all .2s ease-out;
+  &:hover {
+    background-color: rgba($color, .1);
+  }
+  &:active {
+    background-color: rgba($color, .5);
+  }
+  &.active {
+    border-left: 7px solid $color;
+    background-color: rgba($color, .3);
+  }
+}
+
+@mixin movies-list($color) {
+  padding: 1rem 0rem;
+  opacity: .6;
+  transition: all .1s ease-in-out;
+  &:hover {
+    opacity: .9;
+  }
+  &:active {
+    opacity: 1;
+  }
+  &.active {
+    opacity: 1;
+    font-size: 105%;
+  }
+}

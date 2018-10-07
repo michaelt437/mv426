@@ -1,0 +1,12 @@
+$white: #FFF;
+$black: #000;
+$grey: mix($white, $black, 50%);
+$transparent: rgba($white, 0);
+
+$red: #e41232;
+$yellow: #ecea16;
+$blue: #16c1d9;
+
+$orange: mix($red, $yellow, 50%);
+$green: #25de69;
+$purple: mix($red, $blue, 50%);

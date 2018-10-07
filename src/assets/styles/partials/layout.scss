@@ -1,0 +1,32 @@
+#app {
+  header {
+    height: 65px;
+    border-bottom: 1px solid rgba($black, .1);
+    background-color: rgba(lighten($purple, 35%), .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    .title {
+      vertical-align: middle;
+      padding: 1.1rem 2rem;
+    }
+  }
+  #content-wrapper {
+    height: 100%;
+    padding-top: 105px;
+    #content {
+      height: 80%;
+      #movies-container {
+        max-width: 230px;
+        height: 100%;
+        overflow: hidden;
+        .movies {
+          height: 100%;
+          width: 290px;
+          overflow: auto;
+        }
+      }
+    }
+  }
+}

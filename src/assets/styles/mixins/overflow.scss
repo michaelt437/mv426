@@ -1,0 +1,8 @@
+@mixin y-scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+@mixin x-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
