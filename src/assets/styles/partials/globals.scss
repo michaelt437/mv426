@@ -1,6 +1,6 @@
 html, body, #app, {
-  background: lighten($purple, 35%);
-  font-family: 'Ubuntu', sans-serif;
+  background: $bgColor;
+  font-family: 'Open Sans', sans-serif;
   height: 100%;
   font-size: 14px;
   color: rgba($green, .9);

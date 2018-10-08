@@ -1,34 +1,28 @@
 <template>
   <div id="app" class="container grid-xl">
-    <header>
-      <h1 class="title">{{name}}</h1>
-    </header>
     <div id="content-wrapper">
-      <h2>{{monthString}} {{selectedValues.year}}</h2>
-      <div id="content">
-        <div id="movies-container">
-          <movies :year="selectedValues.year" :month="selectedValues.month" :moviesList="films_sorted" />
-        </div>
+      <h2 class="mv--426">MV.426</h2>
+      <div id="content" class="columns">
+        <Lists class="column col-4" :movies="mvlist" />
+        <Movie class="column col-8"/>
       </div>
-      <!-- <navigation :selectedYear="selectedValues['year']" :selectedMonth="selectedValues['month']"/> -->
     </div>
-    <!--  <mainContent class="router-view" :films="films_sorted" :selectedValues="selectedValues" :month="monthString" /> -->
   </div>
 </template>
 
 <script>
-import Main from './components/Main'
-import Navigation from './components/Navigation'
-import Movies from './components/Movies'
+import Lists from './components/Lists'
+import Movie from './components/Movie'
 import {APIKEY} from './apiKey'
 export default {
   name: 'app',
   components: {
-    Movies
+    Lists,
+    Movie
   },
   data(){
     return{
-      name: 'MV-426',
+      name: 'MV.426',
       base_Url: 'https://api.themoviedb.org/3/',
       apiKey: APIKEY,
       selectedValues: {
@@ -57,6 +51,12 @@ export default {
       })
       return arr;
     },
+    mvlist(){
+      let mvlist = this.filmsArr.map(film => {
+        return film.title;
+      });
+      return mvlist;
+    },
     monthStart(){
       return this.$moment().year(this.selectedValues['year']).month(this.selectedValues['month']).startOf('month').format('YYYY-MM-DD');
     },
@@ -81,7 +81,7 @@ export default {
     },
     getAPI(){
       let app = this;
-      fetch('https://api.themoviedb.org/3/discover/movie?&api_key='+ app.apiKey +'&region=US&release_date.gte='+app.monthStart+'&release_date.lte='+app.monthEnd+'&with_release_type=3|2')
+      fetch('https://api.themoviedb.org/3/movie/upcoming?&api_key='+ app.apiKey + '&language=en-US&page=1&region=US')
       .then(function(response){
         return response.json();
       })

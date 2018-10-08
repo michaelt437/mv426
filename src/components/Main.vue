@@ -6,12 +6,10 @@
 </template>
 
 <script>
-import MoviesList from './Movies'
 export default {
   name: 'main',
   props: ['selectedValues', 'films', 'month'],
   components: {
-    MoviesList,
   },
   watch: {
     films: () => {

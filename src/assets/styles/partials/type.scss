@@ -1,7 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800');
 .capitalize {
   text-transform: capitalize;
 }
 .uppercase {
   text-transform: uppercase;
+}
+.mv--426 {
+  font-family: 'Open Sans', 'Ubuntu', sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  color: $bgColor;
+  text-shadow:
+     1px  1px     #000,
+    -1px  1px     #000,
+     1px -1px     #000,
+    -1px -1px     #000;
 }
