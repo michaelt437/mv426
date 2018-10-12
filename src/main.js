@@ -6,6 +6,7 @@ import router from './router'
 import moment from 'moment'
 import Spectre from 'spectre.css'
 import './assets/styles/styles.scss'
+import store from './store'
 
 
 Vue.prototype.$moment = moment;
@@ -17,5 +18,6 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  store
 })

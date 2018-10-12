@@ -18,3 +18,16 @@ html, body, #app, {
     border-top: #{$i}px solid;
   }
 }
+a {
+  color: $black;
+  &:hover {
+    text-decoration-color: $red
+  }
+  &:focus {
+    box-shadow: none;
+  }
+  &.active {
+    font-weight: bold;
+    color: $green;
+  }
+}
