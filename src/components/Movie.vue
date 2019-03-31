@@ -9,7 +9,7 @@
       <dt>Release Date</dt>
       <dd class="mt0">{{$moment(movie.release_date).format('MMMM D, YYYY')}}</dd>
       <dt>Runtime</dt>
-      <dd class="mt0">{{movie.runtime || '???'}} minutes</dd>
+      <dd class="mt0">{{runtime || '???'}}</dd>
     </dl>
     <div class="columns">
       <div class="column col-4">
@@ -61,6 +61,11 @@ export default {
   computed: {
     movie() {
       return this.$store.state.selectedMovie;
+    },
+    runtime() {
+      return this.movie.runtime ?
+        `${Math.floor(this.movie.runtime / 60)}hr ${(this.movie.runtime % 60)}m` :
+        'TBD'
     },
     limitCastList() {
       return this.showMoreCast ? this.movie.credits.cast.length : this.castLimit;
