@@ -63,21 +63,15 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    getYear(state){
-      return state.selectedYear;
-    },
-    getMonth(state){
-      return state.selectedMonth;
-    },
     getPoster(state){
-      return state.configs.imgPath + state.configs.posterSizes[5] + state.selectedMovie.poster_path;
+      return state.configs.imgPath + state.configs.posterSizes[4] + state.selectedMovie.poster_path;
     },
     getMonthStartEnd(state){
       return {
         start: state.selectedYear + '-' + moment(state.selectedMonth, 'MMMM').format('MM') + '-' + '01',
         end: state.selectedYear + '-' + moment(state.selectedMonth, 'MMMM').format('MM') + '-' + moment().month(state.selectedMonth).endOf('month').format('DD')
       };
-    }
+    },
   },
   actions: {
     getMoviesOfMonth({ state, commit, getters, dispatch }){

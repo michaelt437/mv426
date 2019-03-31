@@ -2,8 +2,7 @@ html, body, #app, {
   background: $bgColor;
   font-family: 'Open Sans', sans-serif;
   height: 100%;
-  font-size: 14px;
-  color: rgba($green, .9);
+  font-size: 12px;
   color: $black;
   *::selection {
     background-color: darken($purple, 20%);
@@ -30,4 +29,10 @@ a {
     font-weight: bold;
     color: $green;
   }
+}
+
+hr {
+  border-width: 1px 0 0;
+  border-style: solid;
+  border-color: $grey;
 }
