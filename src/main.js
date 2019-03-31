@@ -7,7 +7,9 @@ import moment from 'moment'
 import Spectre from 'spectre.css'
 import './assets/styles/styles.scss'
 import store from './store'
+import VueGoogleCharts from 'vue-google-charts'
 
+Vue.use(VueGoogleCharts)
 
 Vue.prototype.$moment = moment;
 Vue.prototype.$eventBus = new Vue(); // Global event bus

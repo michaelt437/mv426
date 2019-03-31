@@ -3,4 +3,15 @@
     height: 100%;
     padding-top: 50px;
   }
+  .graph_wrapper {
+    position: relative;
+    height: 105px;
+    width: 105px;
+    .vote_average {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
 }
