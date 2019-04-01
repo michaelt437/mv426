@@ -6,9 +6,11 @@ html, body, #app, {
   color: $black;
   *::selection {
     background-color: darken($purple, 20%);
+    color: $white;
   }
   *::-moz-selection {
     background-color: darken($purple, 20%);
+    color: $white;
   }
 }
 @for $i from 1 through 5 {

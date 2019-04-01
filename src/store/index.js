@@ -10,7 +10,8 @@ export default new Vuex.Store({
     configs: {
       imgPath: '',
       backdropSizes: '',
-      posterSizes: ''
+      posterSizes: '',
+      profileSizes: ''
     },
     years: [
       2015,
@@ -60,11 +61,13 @@ export default new Vuex.Store({
       state.configs.imgPath = payload.images.base_url
       state.configs.backdropSizes = payload.images.backdrop_sizes
       state.configs.posterSizes = payload.images.poster_sizes
+      state.configs.profileSizes = payload.images.profile_sizes
     }
   },
   getters: {
     getPoster(state){
-      return state.configs.imgPath + state.configs.posterSizes[4] + state.selectedMovie.poster_path;
+      if(state.selectedMovie.poster_path) return state.configs.imgPath + state.configs.posterSizes[4] + state.selectedMovie.poster_path;
+      else return "https://via.placeholder.com/240x360?text=TBA";
     },
     getMonthStartEnd(state){
       return {
@@ -93,6 +96,7 @@ export default new Vuex.Store({
         return response.json();
       })
       .then(function(data){
+        console.log(data)
         commit('setMovies', data.results)
       })
       .then(function(){

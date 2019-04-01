@@ -4,51 +4,70 @@
     <hr style="width: 20px; margin-left: 0;">
     <h4 class="mb2">{{movie.tagline}}</h4>
     <p class="mb0"><strong>Synopsis</strong></p>
-    <p class="mb2">{{movie.overview}}</p>
-    <div class="columns">
-      <div class="column col-2">
-        <dl class="pb2">
-          <dt>Release Date</dt>
-          <dd class="mt0">{{$moment(movie.release_date).format('MMMM D, YYYY')}}</dd>
-          <dt>Runtime</dt>
-          <dd class="mt0">{{movie.runtime || '???'}} minutes</dd>
-        </dl>
-      </div>
+    <p class="mb4">{{movie.overview}}</p>
+    <div class="columns mb3">
       <div class="column col-8">
-        <div class="graph_wrapper">
-          <h3 class="vote_average">{{movie.vote_average}}</h3>
-          <GChart
-            type="PieChart"
-            :data="chartData"
-            :options="chartOptions"
-          />
+        <div class="columns">
+          <div class="column col-6">
+            <dl class="m0 pb2">
+              <dt>Genre</dt>
+              <dd class="mt0">{{genres.join(', ')}}</dd>
+              <dt>Release Date</dt>
+              <dd class="mt0">{{$moment(movie.release_date).format('MMMM D, YYYY')}}</dd>
+              <dt>Runtime</dt>
+              <dd class="mt0">{{runtime}}</dd>
+            </dl>
+          </div>
+          <div class="column col-6">
+            <p><strong>Rating</strong></p>
+            <div class="graph_wrapper">
+              <h3 class="vote_average">{{movie.vote_average}}</h3>
+              <GChart
+                type="PieChart"
+                :data="chartData"
+                :options="chartOptions"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="columns">
-      <div class="column col-4">
-        <ul class="list--unstyled">
-          <li><strong>Crew:</strong></li>
-          <li v-for="crewMember in crew">
-            {{crewMember.job}}: {{crewMember.name}}
-          </li>
-        </ul>
-      </div>
-      <div class="column col-4">
-        <ul class="list--unstyled">
-          <li><strong>Starring:</strong></li>
-          <li v-for="member in cast">{{member.name}}</li>
-          <li v-if="castLength > castLimit">
-            <a href="#" @click.prevent="showMoreCast = !showMoreCast" v-text="showMoreCast ? '< Less...' : '> More...'"></a>
-          </li>
-        </ul>
+        <div class="columns">
+          <div class="column col-6">
+            <ul class="list--unstyled">
+              <li><strong>Crew</strong></li>
+              <li v-for="crewMember in crew">
+                {{crewMember.job}}: {{crewMember.name}}
+              </li>
+            </ul>
+          </div>
+          <div class="column col-6">
+            <ul class="list--unstyled">
+              <li><strong>Starring</strong></li>
+              <li v-for="member in cast">{{member.name}}</li>
+              <li v-if="castLength > castLimit">
+                <a href="#" @click.prevent="showMoreCast = !showMoreCast" v-text="showMoreCast ? '< Less...' : '> More...'"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="column col-4">
         <img :src="posterSrc" class="poster img-responsive" :alt="movie.title">
       </div>
     </div>
+    <p><strong>Stills</strong></p>
     <div class="columns">
-      <p>Stills</p>
+      <div class="column">
+        <img src="https://via.placeholder.com/300x200?text=NA" class="img-responsive" alt="">
+      </div>
+      <div class="column">
+        <img src="https://via.placeholder.com/300x200?text=NA" class="img-responsive" alt="">
+      </div>
+      <div class="column">
+        <img src="https://via.placeholder.com/300x200?text=NA" class="img-responsive" alt="">
+      </div>
+      <div class="column">
+        <img src="https://via.placeholder.com/300x200?text=NA" class="img-responsive" alt="">
+      </div>
     </div>
   </div>
 </template>
@@ -69,6 +88,13 @@ export default {
         'Director of Photography',
         'Original Music Composer'
       ]
+    }
+  },
+  watch: {
+    movie: function() {
+      if(this.showMoreCast) {
+        this.showMoreCast = false;
+      }
     }
   },
   methods: {
@@ -92,9 +118,9 @@ export default {
         case 7:
           return '#f4ff4d'
         case 8:
-          return '#a4ec47'
+          return '#95c234'
         case 9:
-          return '#7ce32d'
+          return '#72d228'
         case 10:
           return '#15d270'
         default:
@@ -110,6 +136,9 @@ export default {
       return this.movie.runtime ?
         `${Math.floor(this.movie.runtime / 60)}hr ${(this.movie.runtime % 60)}m` :
         'TBD'
+    },
+    genres() {
+      return this.movie.genres.map((genreObj) => genreObj.name)
     },
     limitCastList() {
       return this.showMoreCast ? this.movie.credits.cast.length : this.castLimit;
@@ -145,14 +174,18 @@ export default {
     chartOptions() {
       return {
         backgroundColor: 'transparent',
-        colors: [this.setRatingColor(this.movie.vote_average), 'transparent'],
+        colors: [this.setRatingColor(this.movie.vote_average), '#c6c6c6'],
+        chartArea: {
+          height: '70',
+          width: '70'
+        },
         enableInteractivity: false,
         legend: 'none',
         pieSliceBorderColor: 'transparent',
         pieSliceText: 'none',
         pieHole: 0.8,
-        height: '105',
-        width: '105'
+        height: '70',
+        width: '70'
       }
     }
   }
