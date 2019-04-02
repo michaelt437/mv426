@@ -87,7 +87,8 @@ export default {
         'Director',
         'Director of Photography',
         'Original Music Composer'
-      ]
+      ],
+      env: process.env
     }
   },
   watch: {
@@ -138,7 +139,9 @@ export default {
         'TBD'
     },
     genres() {
-      return this.movie.genres.map((genreObj) => genreObj.name)
+      if(Object.keys(this.movie).length) {
+        return this.movie.genres.map((genreObj) => genreObj.name)
+      }
     },
     limitCastList() {
       return this.showMoreCast ? this.movie.credits.cast.length : this.castLimit;

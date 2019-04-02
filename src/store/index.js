@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import moment from 'moment'
-import { APIKEY } from '../apiKey'
+// import { APIKEY } from '../apiKey'
+
+const APIKEY = process.env.APIKEY
 
 Vue.use(Vuex)
 
